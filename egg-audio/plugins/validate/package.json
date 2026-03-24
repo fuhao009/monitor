@@ -1,0 +1,7 @@
+{
+  "name": "egg-audio-validate-plugin",
+  "private": true,
+  "eggPlugin": {
+    "name": "validate"
+  }
+}

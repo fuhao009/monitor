@@ -1,0 +1,43 @@
+# Root project local/runtime state
+.sisyphus/
+.ruff_cache/
+.DS_Store
+
+# Local clones / bulky binaries / machine data
+.tools/
+mysql-5.7_*.tar.gz
+egg-audio/mysql/
+**/*.tar
+egg-audio/audio_export_*.csv
+
+# Environment / secrets
+**/.env
+**/.env.local
+**/.env.*.local
+
+# Dependencies / build outputs
+**/node_modules/
+**/dist/
+**/.umi/
+**/.umi-production/
+**/.umi-test/
+**/coverage/
+**/.nyc_output/
+**/typings/
+**/*.tsbuildinfo
+web-audio/types/cache/
+
+# Logs / temp
+**/logs/
+**/*.log
+**/run/
+**/.eslintcache
+**/.history/
+**/.temp/
+
+# Editor / OS
+**/.idea/
+**/.vscode/
+
+# Generated browser artifacts
+web-audio/tests/e2e/artifacts/

@@ -1,0 +1,7 @@
+{
+  "name": "egg-audio-knex-plugin",
+  "private": true,
+  "eggPlugin": {
+    "name": "knex"
+  }
+}

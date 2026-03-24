@@ -1,0 +1,69 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: egg-audio-mysql
+    restart: unless-stopped
+    ports:
+      - "3110:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=dz123456
+      - MYSQL_DATABASE=dz_db_mysql
+      - MYSQL_ROOT_HOST=%
+      - TZ=Asia/Shanghai
+    volumes:
+      - /data/recordguard/mysql:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-pdz123456"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  egg-audio:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: egg-audio-server
+    restart: unless-stopped
+    network_mode: host  # 使用宿主机网络
+    environment:
+      # 数据库配置
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3110
+      - DB_USER=root
+      - DB_PASSWORD=dz123456
+      - DB_NAME=dz_db_mysql
+
+      # 对讲机平台配置
+      - ACCOUNT=gsgl
+      - PASSWORD=Hhy8649116
+      - BASE_URL=https://api.smart-ptt.com
+      - FILE_BASE_URL=http://110.41.22.18
+
+      # Node 环境
+      - NODE_ENV=production
+
+      # Egg.js 配置
+      - EGG_SERVER_ENV=prod
+    volumes:
+      # 挂载日志目录（持久化日志）
+      - ./logs:/app/logs
+      # 如果需要修改环境变量，可以挂载 .env 文件
+      # - ./.env:/app/.env:ro
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://localhost:7001', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

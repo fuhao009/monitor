@@ -1,0 +1,7 @@
+{
+  "name": "egg-audio-cors-plugin",
+  "private": true,
+  "eggPlugin": {
+    "name": "cors"
+  }
+}

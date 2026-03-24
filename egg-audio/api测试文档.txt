@@ -1,0 +1,118 @@
+
+curl -s -X POST "http://127.0.0.1:7001/api/auth/login" -H "Content-Type: application/json" -d '{"account": "fadmin", "password": "123456"}'
+Bash(curl -s -X POST "http://127.0.0.1:7001/api/auth/login" -H "Content-Type: application/json" -d
+      '{"account": "fadmin", "password": "123456"}')
+  ⎿  {
+       "status": "ok",
+       "currentAuthority": "admin",
+       "data": {
+         "token": "07e527ef-a0af-4e73-816e-0f08e742806b",
+         "expire_time": "2026-03-07 15:51:03",
+         "userInfo": {
+           "userid": 26014,
+           "name": "fadmin",
+           "email": "",
+           "avatar": "https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png",
+           "group_list": "",
+           "access": "admin"
+         }
+       }
+     }
+
+Bash(curl -s -X POST "http://127.0.0.1:7001/api/group/create" \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer 07e527ef-a0af-4e73-816e-0f08e742806b" \
+        -d '{"related_group_name": "杭州北杭州段1", "parent_id": 36004, "association_type": 1,
+      "related_group_id": "343050"}')
+  ⎿  {
+       "success": true,
+       "data": {
+         "id": 36808,
+         "related_group_name": "杭州北杭州段1",
+         "related_group_id": "343050",
+         "parent_id": 36004,
+         "terminal_accounts": null,
+         "association_type": 1,
+         "status": 1,
+         "create_time": "2025-12-07T07:51:11.000Z",
+         "update_time": "2025-12-07T07:51:11.000Z"
+       },
+       "message": "创建成功"
+     }
+
+● 创建成功！返回结果：                                           03:51 PM  claude-opus-4-5-20251101
+
+  {
+    "success": true,
+    "data": {
+      "id": 36808,
+      "related_group_name": "杭州北杭州段1",
+      "related_group_id": "343050",           // PTT群组ID
+      "parent_id": 36004,
+      "terminal_accounts": null,
+      "association_type": 1,                   // 绑定群组模式
+      "status": 1,
+      "create_time": "2025-12-07T07:51:11.000Z",
+      "update_time": "2025-12-07T07:51:11.000Z"
+    },
+    "message": "创建成功"
+  }
+
+
+
+Bash(curl -s -X POST "http://127.0.0.1:7001/api/group/create" \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer a7005347-a478-4522-9bb7-6cfc32f71114" \
+        -d '{"related_group_name": "小组群1", "parent_id": 36004, "association_type": 2,
+      "terminal_accounts": "杭北21,杭北44"}' | python3 -m json.tool)
+  ⎿  {
+         "success": true,
+         "data": {
+             "id": 36807,
+             "related_group_name": "\u5c0f\u7ec4\u7fa41",
+             "related_group_id": null,
+             "parent_id": 36004,
+             "terminal_accounts": "[\"\u676d\u531721\",\"\u676d\u531744\"]",
+             "association_type": 2,
+             "status": 1,
+             "create_time": "2025-12-07T07:48:39.000Z",
+             "update_time": "2025-12-07T07:48:39.000Z",
+             "parent_group_name": "\u676d\u5dde\u5317\u676d\u5dde\u6bb5"
+         },
+         "message": "\u521b\u5efa\u6210\u529f"
+     }
+
+● 创建成功！返回结果：
+
+  {
+      "success": true,
+      "data": {
+          "id": 36807,
+          "related_group_name": "小组群1",
+          "related_group_id": null,
+          "parent_id": 36004,
+          "terminal_accounts": "[\"杭北21\",\"杭北44\"]",
+          "association_type": 2,
+          "status": 1,
+          "create_time": "2025-12-07T07:48:39.000Z",
+          "update_time": "2025-12-07T07:48:39.000Z",
+          "parent_group_name": "杭州北杭州段"    <--
+  上级群组名称已返回
+      },
+      "message": "创建成功"
+  }
+
+
+
+curl -s -X POST "http://127.0.0.1:7001/api/audio" \
+        -H "Content-Type: application/json" \
+        -H "Authorization: Bearer a7005347-a478-4522-9bb7-6cfc32f71114" \
+        -d '{"related_group_name": "小组群1", "parent_id": 36004, "association_type": 2,
+      "terminal_accounts": "杭北21,杭北44"}' | python3 -m json.tool
+
+
+curl -H "Authorization: Bearer ae9a1c57-f052-4f2b-aedd-af8f20b5baf9" -s "http://10.0.16.192:7001/api/audio/list?group_id=343050&start_time=2025-12-07%2000:00:00&end_time=2025-12-07%2023:59:59&current=1&pageSize=1&sort_order=desc&user_account=杭北21"
+返回
+{"success":true,"data":[{"download_url":"https://apirecord.smart-ptt.com/voice/?SpkId=324624&time=2025_12_7&filename=2025_12_7 16_0_57.wav&CodecType=0","group_name":"杭州北杭州段","id":324624,"length":"00:01","play_url":"https://apirecord.smart-ptt.com/voice/?SpkId=324624&time=2025_12_7&filename=1&CodecType=0","status":0,"time":"2025-12-07 16:00:57","user_name":"杭北44"}],"total":143,"current":1,"pageSize":1}
+
+
