@@ -31,6 +31,12 @@
 
 **后续如果用户说“继续做监控集成/改监控页/改监控接口”，默认优先改 `web-audio/` + `egg-audio/`，不要回到独立 `frontend/` + `backend/` 原型上做。**
 
+## REPOSITORY REMOTE
+
+- 当前 `monitor-console/` 已初始化为独立 git 仓库。
+- 当前远端：`git@github.com:fuhao009/monitor.git`
+- 当前默认分支：`main`
+
 ## CURRENT ARCHITECTURE
 
 ### 正式集成态
@@ -652,6 +658,8 @@ monitor-console/
   - `skills/monitor-console-page-testing/SKILL.md`
 - 当前本机已安装运行态副本：
   - `/root/.agents/skills/monitor-console-page-testing/SKILL.md`
+- 当前仓库内已提交源码副本：
+  - `skills/monitor-console-page-testing/SKILL.md`
 - 当前 skill 附带：
   - 页面范围参考：`skills/monitor-console-page-testing/references/formal-pages.md`
   - 模板脚本：`skills/monitor-console-page-testing/templates/verify-formal-pages.sh`
@@ -666,6 +674,17 @@ monitor-console/
   - `页面任务队列.md`
 - `原型图清单.md` 用于描述目标运维平台的页面原型、URL 和分期建议。
 - `页面任务队列.md` 用于约束后续开发按“每个页面一个 task，完成一个再做下一个”的方式推进。
+
+### 2026-03-24：代码与 skill 已上传到 GitHub
+
+- 当前 `monitor-console/` 已初始化独立 git 仓库并推送到：
+  - `git@github.com:fuhao009/monitor.git`
+- 当前推送分支：
+  - `main`
+- 当前首个提交：
+  - `70f0ff7 feat: build monitor ops platform`
+- 当前项目专用页面测试 skill 已随仓库一起提交：
+  - `skills/monitor-console-page-testing/`
 
 ### 2026-03-24：多页面运维平台骨架已落地
 
