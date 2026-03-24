@@ -685,6 +685,7 @@ monitor-console/
   - `70f0ff7 feat: build monitor ops platform`
 - 当前项目专用页面测试 skill 已随仓库一起提交：
   - `skills/monitor-console-page-testing/`
+- 当前根 `README.md` 已同步改成正式集成态说明，不再把仓库首页误写成旧 `frontend/` + `backend` 原型。
 
 ### 2026-03-24：多页面运维平台骨架已落地
 
